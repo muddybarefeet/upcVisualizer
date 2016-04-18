@@ -21,7 +21,7 @@ module.exports = {
 			    }
 			    // View results of the request
 			    // console.log( "Results of request:\n" + JSON.stringify( products ) );
-			    callback(null, JSON.parse(products));
+			    callback(null, JSON.parse(products.results));
 		   }
 		);
 	},

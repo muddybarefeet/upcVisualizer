@@ -4,6 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     
     <!-- Include the AngularJS library -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
@@ -36,8 +43,36 @@
 
         <button type="button" class="btn btn-warning" ng-click="findType()">Find my data</button>
 
-        {{apiData}}
+        <div class="well">
 
+          <div class="row">
+
+          <div class="col-md-3">
+            <td><img class="api_image" ng-src="{{apiData.images[0]}}" ></td>
+          </div>
+
+          <!-- add logic for the price and the url -->
+          <div class="col-md-9">
+            <h4>Name: {{apiData.name}}</h4>
+            <p>UPC: {{apiData.upc}}</p>
+            <p>Brand: {{apiData.brand}}</p>
+            <p>Category: {{apiData.category}}</p>
+            <p>Color: {{apiData.color}}</p>
+            <p>Url: {{apiData.color}}</p>
+            <p>Price: {{apiData.color}}</p>
+          </div>
+
+<!--           <div class="col-md-3">
+            <p></p>
+            <p></p>
+            <p>Weight: {{apiData.weight | number}}</p>
+            <p>Height: {{apiData.height}}</p>
+            <p>Width: {{apiData.width}}</p>
+            <p>Length: {{apiData.length}}</p>
+          </div> -->
+
+          </div>
+        </div>
 
     </div>
 
@@ -50,7 +85,6 @@
     <!-- Services -->
     <script src="js/factory/index.js"></script>
 
-    <!-- Directives -->
 
 
   </body>
