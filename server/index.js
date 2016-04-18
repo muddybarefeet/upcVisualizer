@@ -2,7 +2,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var apiScript = require('./apiQueries');
 
 var port = 3000;
 var app = express();
@@ -10,13 +9,28 @@ var app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-// //connection to the routes in ./routes folder
+var apiScript = require('./apiQueries.js');
+var keys = require('./keys.js');
+var api_key = keys.key;
+var api_secret = keys.secret;
+var sem3 = require('semantics3-node')(api_key,api_secret);
+
+// RE-FACTOR WITH PROMISES!!
 app.use('/api', function (req, res) {
 	//ping the semantics3 api and get the data
 	var identifier = req.body.identifier;
 	var value = req.body.value;
-	console.log('reached the server!', req.body );
-	// apiScript.upcLookup(identifier, value);
+	apiScript.apiQuery(identifier, value, function(err, data) {
+		if (err) {
+			res.status(400).json({
+		    	data: err
+		    });
+		} else {
+			res.status(200).json({
+		    	data: data
+		    });
+		}
+	});
 });
 
 //wild card route to anything not starting /api

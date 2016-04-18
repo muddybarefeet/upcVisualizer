@@ -1,5 +1,4 @@
-app.factory('sem3', ['$http', function($http) { 
-  
+app.factory('Sem3', ['$http', function($http) { 
 
   var apiQuery = function (identifier, value) {
     var req = {
@@ -10,17 +9,14 @@ app.factory('sem3', ['$http', function($http) {
       value: value
      }
     };
-    //VALUE NOT WOKING CURRENTLY!!
+    
     console.log('value', value);
-    $http(req)
-    .then(function(data){
-      console.log('this is the data from the api: ',data);
+    return $http(req)
+    .then(function(apiReturn){
+      return apiReturn.data.results;
     });
 
   };
-
-
-
 
   return {
     "apiQuery": apiQuery

@@ -23,7 +23,7 @@
 
       <div class="form-group">
         <label for="usr">Search Bar:</label>
-        <input type="text" class="form-control" ng-model="MainController.input">
+        <input type="text" class="form-control" ng-model="input">
       </div>
         <div>
           <form name="myForm">
@@ -35,6 +35,8 @@
         </div>
 
         <button type="button" class="btn btn-warning" ng-click="findType()">Find my data</button>
+
+        {{apiData}}
 
 
     </div>
