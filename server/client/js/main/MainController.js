@@ -1,55 +1,47 @@
 app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
 //data from the html gets stored here, then needs to get sent to the service
   $scope.input = "";
+  
+  $scope.showSpinner = false;
 
   $scope.data = {
     repeatSelect: null,
     availableOptions: [
-      {id: '0', name: 'Search'},
-      {id: '1', name: 'Url'},
-      {id: '2', name: 'UPC/EAN'}
+      {id: '0', name: 'Select Search Option'},
+      {id: '1', name: 'Search'},
+      {id: '2', name: 'URL'},
+      {id: '3', name: 'UPC/EAN'}
     ],
+    selectedOption: {id: '0', name: 'Select Search Option'}
    };
 
-   $scope.apiData = [];
+  $scope.apiData = [];
 
   $scope.findType = function () {
+
+    $scope.showSpinner = true;
   	var index = $scope.data.repeatSelect;
   	// if ($scope.data.repeatSelect === "1") {
-  	console.log('this is the type: ', $scope.data.availableOptions[index].name);
+  	console.log('this is the type: ', $scope.data.selectedOption.name);
   	//take the search and the query and query the correct function
     var identifier;
   
-    if ( $scope.data.availableOptions[index].name === "Search" ) {
+    if ( $scope.data.selectedOption.name === "Search" ) {
       identifier = "search";
-    } else if ( $scope.data.availableOptions[index].name === "Url" ) {
+    } else if ( $scope.data.selectedOption.name === "URL" ) {
       identifier = "url";
-    } else if ( $scope.data.availableOptions[index].name === "UPC/EAN" ) {
+    } else if ( $scope.data.selectedOption.name === "UPC/EAN" ) {
       identifier = "upc";
     }
 
-    var edits = {
-      weight: 1000000,
-      width: 10,
-      length: 10,
-      height: 10
-    };
-
 		Sem3.apiQuery(identifier, $scope.input)
     .then(function (val) {
+      $scope.showSpinner = false;
       console.log('back this is the data', val);
-      val.forEach(function(product) {
-        //make the weight into kg and other dimensions in cm
-        for(var key in edits) {
-          if (product[key]) {
-            var data = product[key]/edits[key];
-            product[key] = data.toFixed(2);
-          }
-        }
-      });
       $scope.apiData = val;
     })
     .catch(function (err) {
+      $scope.showSpinner = false;
       console.log('err ', err);
     });
   };

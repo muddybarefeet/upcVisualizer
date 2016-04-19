@@ -1,1 +1,1 @@
-var app = angular.module('UpcVisualizer', []);
+var app = angular.module('UpcVisualizer', ['angularSpinner']);

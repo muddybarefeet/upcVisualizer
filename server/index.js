@@ -15,22 +15,23 @@ var api_key = keys.key;
 var api_secret = keys.secret;
 var sem3 = require('semantics3-node')(api_key,api_secret);
 
-// RE-FACTOR WITH PROMISES!!
 app.use('/api', function (req, res) {
 	//ping the semantics3 api and get the data
 	var identifier = req.body.identifier;
 	var value = req.body.value;
-	apiScript.apiQuery(identifier, value, function(err, data) {
-		if (err) {
-			res.status(400).json({
-		    	data: err
-		    });
-		} else {
-			res.status(200).json({
-		    	data: data
-		    });
-		}
+	return apiScript.apiQuery(identifier, value)
+	.then(function (data) {
+		return res.status(200).json({
+	    	data: data
+	    });
+	})
+	.catch(function (err) {
+		// console.log('err', err);
+		return res.status(400).json({
+	    	message: err
+	    });
 	});
+	
 });
 
 //wild card route to anything not starting /api

@@ -6,22 +6,42 @@ var sem3 = require('semantics3-node')(api_key,api_secret);
 
 module.exports = {
 
-	apiQuery: function (indentifier, value, callback) {
-		console.log('in the query: ', indentifier, value);
-		// Build the request
-		sem3.products.clear()
-		sem3.products.products_field( indentifier, value );
-		// Run the request
-		sem3.products.get_products(
-		   function(err, products) {
+	apiQuery: function (indentifier, value) {
+
+		return new Promise(function(resolve, reject) {
+			// console.log('in the query: ', indentifier, value);
+
+			var edits = {
+			  weight: 1000000,
+			  width: 10,
+			  length: 10,
+			  height: 10
+			};
+
+			// Build the request
+			sem3.products.clear()
+			sem3.products.products_field( indentifier, value );
+			// Run the request
+			sem3.products.get_products(function(err, products) {
 			    if (err) {
-			       	console.log("Couldn't execute request: get_products");
-			        callback(err, null);
+			       	// console.log("Couldn't execute request: get_products");
+			        return reject(err);
 			    }
 			    var returnData = JSON.parse(products);
-			    callback(null, returnData.results);
-		   }
-		);
+			    var results = returnData.results;
+				results.forEach(function(product) {
+				   //make the weight into kg and other dimensions in cm
+				    for(var key in edits) {
+				    	if (product[key]) {
+				        	var data = product[key]/edits[key];
+				        	product[key] = data.toFixed(2);
+				      	}
+				    }
+				});
+			    return resolve(results);
+			});
+		});
+
 	},
 
 	extractData: function (hash) {

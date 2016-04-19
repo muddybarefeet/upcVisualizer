@@ -3,8 +3,10 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="css/filled_box.png"/>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -14,6 +16,9 @@
     
     <!-- Include the AngularJS library -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+
+    <script src="bower_components/spin.js/spin.js"></script>
+    <script src="bower_components/angular-spinner/angular-spinner.js"></script>
   </head>
   <body ng-app="UpcVisualizer">
 
@@ -29,21 +34,25 @@
     <div class="main container" ng-controller="MainController">
 
         <div class="form-group row">
-          <div class="col-md-9">
-            <h4>Search Bar:</h4>
-            <input type="text" class="form-control" ng-model="input">
-          </div>
           <div class="col-md-3"> 
             <form name="myForm">
-              <h4 class=""> Search Type: </h4>
-              <select name="repeatSelect" class="select_style" ng-model="data.repeatSelect">
+          <!--     <select name="repeatSelect" class="select_style" ng-model="data.repeatSelect">
                 <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
-              </select>
-              <button type="button" class="btn btn-warning float_button" ng-click="findType()">Find my data</button>
+              </select> -->
+              <select class="select_style" name="mySelect" ng-options="option.name for option in data.availableOptions track by option.id" ng-model="data.selectedOption"></select>
             </form>
+          </div>
+          <div class="col-md-9">
+            <div class="input-group">
+              <input type="text" ng-model="input" class="form-control" placeholder="Search for ...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="findType()"><i class="fa fa-search" aria-hidden="true"></i></button>
+              </span>
+            </div>
           </div>
         </div>
 
+        <span us-spinner="{radius:30, width:8, length: 16}" spinner-on="showSpinner"></span>
 
         <div ng-repeat="product in apiData" class="top_margin_display"> 
           <div class="well top_margin_display">
@@ -59,21 +68,21 @@
                 <p>Brand: {{product.brand}}</p>
                 <p>Manufacturer: {{product.manufacturer}}</p>
                 <p>Category: {{product.category}}</p>
-                <p>Color: {{product.color}}</p>
+                <p>UPC: {{product.upc}}</p>
               </div>
 
               <div class="col-md-4">
-                <p>UPC: {{product.upc}}</p>
-                <p>Sem3_id: {{product.sem3_id}}</p>
+                <p>Color: {{product.color}}</p>
                 <p>Price: {{product.sitedetails[0].latestoffers[0].price | currency}}</p>
                 <p>Url: {{product.sitedetails[0].url}}</p>
+                <p>Sem3_id: {{product.sem3_id}}</p>
               </div>
 
               <div class="col-md-2">
-                <p>Weight: {{product.weight | number}}kg</p>
-                <p>Height: {{product.height}}cm</p>
-                <p>Width: {{product.width}}cm</p>
-                <p>Length: {{product.length}}cm</p>
+                <p>Weight: {{product.weight ? product.weight + "kg" : ''}}</p>
+                <p>Height: {{product.height ? product.height + "cm" : ''}}</p>
+                <p>Width: {{product.width ? product.width + "cm" : ''}}</p>
+                <p>Length: {{product.length ? product.length + "cm" : ''}}</p>
             </div>
 
             </div>
