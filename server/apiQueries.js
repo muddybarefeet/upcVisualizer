@@ -37,7 +37,10 @@ module.exports = {
 				      	}
 				    }
 				});
-			    return resolve(results);
+			    return resolve({
+			    	resultsUpdated: results,
+			    	count: returnData.total_results_count
+			    });
 			});
 		});
 

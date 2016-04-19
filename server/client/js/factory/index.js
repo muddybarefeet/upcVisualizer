@@ -15,9 +15,9 @@ app.factory('Sem3', ['$http', function($http) {
     return $http(req)
     .then(function(apiReturn){
       console.log('in factory back: ', apiReturn);
-      if (apiReturn.status === 200 && apiReturn.data.data.length > 0 ) {
+      if (apiReturn.status === 200 && apiReturn.data.data.resultsUpdated.length > 0 ) {
         return apiReturn.data.data;
-      } else if ( apiReturn.data.data.length === 0 ) {
+      } else if ( apiReturn.data.data.resultsUpdated.length === 0 ) {
         return {
           message: "No match found:   Input: '"+ value + "' Search Type: '"+ identifier + "'"
         }

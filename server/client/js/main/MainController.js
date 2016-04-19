@@ -5,6 +5,7 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
   $scope.showSpinner = false;
   $scope.errorMessage;
   $scope.page = 0;
+  $scope.resultsCount = 0;
 
   $scope.offset = 800;
   $scope.showPaginators = false;
@@ -29,7 +30,8 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
     availableOptions: [
       {id: '1', name: 'Search'},
       {id: '2', name: 'URL'},
-      {id: '3', name: 'UPC/EAN'}
+      {id: '3', name: 'UPC/EAN'},
+      {id: '4', name: 'Site'},
     ],
     selectedOption: {id: '1', name: 'Search'}
    };
@@ -43,6 +45,7 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
       $scope.offset = 0;
       $scope.page = 0;
       $scope.showPaginators = false;
+      $scope.resultsCount = 0;
     }
 
     $scope.showSpinner = true;
@@ -50,14 +53,21 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
 
     console.log('this is the offset: ', $scope.offset);
   	//take the search and the query and query the correct function
-    var identifier;
+    var identifier = $scope.data.selectedOption.name.toLowerCase();
   
-    if ( $scope.data.selectedOption.name === "Search" ) {
-      identifier = "search";
-    } else if ( $scope.data.selectedOption.name === "URL" ) {
-      identifier = "url";
+    if ( $scope.data.selectedOption.name === "URL" ) {
+      var isValidURL = validateURL($scope.input);
+      if (!isValidURL) {
+        $scope.showSpinner = false;
+        return;
+      }
     } else if ( $scope.data.selectedOption.name === "UPC/EAN" ) {
       identifier = "upc";
+      var isValid = validateUPC($scope.input);
+      if (!isValid) {
+        $scope.showSpinner = false;
+        return;
+      }
     }
 
 		Sem3.apiQuery(identifier, $scope.input, $scope.offset) //pass an offset everytime
@@ -67,21 +77,52 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
       //ERROR HANDLING
       if (val.message) {
         $scope.errorMessage = val.message;
-        setTimeout(function(){ $scope.errorMessage = ""; }, 1000);
+        removeError();
       } else {
-        if (identifier === "search") {
+        if (identifier === "search" || identifier === "site") {
           //show the pagination buttons
           $scope.showPaginators = true;
+          $scope.resultsCount = val.count;
         }
-        $scope.apiData = val;
+        $scope.apiData = val.resultsUpdated;
       }
     })
     .catch(function (err) {
       $scope.showSpinner = false;
       console.log('err ', err);
-      $scope.errorMessage = err;
+      $scope.errorMessage = "This was a bad request";
+      removeError();
     });
     $scope.lastInput = $scope.input;
+  };
+
+  var removeError = function () {
+    setTimeout(function(){ 
+      $scope.errorMessage = ""; 
+      $scope.$apply();
+    }, 2000);
+  };
+
+  var validateUPC = function (upc) {
+    var isNum = /^\d+$/.test(upc);
+    if (!isNum) {
+      $scope.errorMessage = "This is not a valid UPC/EAN. A valid UPC/EAN does not contain letters.";
+      removeError();
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  var validateURL = function (url) {
+    var isUrl = /^http.*$/.test(url);
+    if (!isUrl) {
+      $scope.errorMessage = "This is not a valid URL. A valid UPC/EAN does not contain letters.";
+      removeError();
+      return false;
+    } else {
+      return true;
+    }
   };
 
 }]);

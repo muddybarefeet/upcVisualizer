@@ -28,7 +28,7 @@
 
 .logo_size {
 	margin-top: 7px;
-	width: 40px;
+	width: 200px;
 	display: inline;
 	float: left;
 }
@@ -53,4 +53,8 @@
 	font-size: 17px;
 	margin-top: 10px;
 	display: inline;
+}
+
+.padding {
+	padding-top: 20px;
 }
