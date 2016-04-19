@@ -61,7 +61,7 @@
             <div class="row top_margin_display">
 
               <div class="col-md-2">
-                <td><img class="api_image" ng-src="{{product.images[0]}}" ></td>
+                <img class="api_image white_border" ng-src="{{product.images[0]}}" >
               </div>
 
               <div class="col-md-4">
@@ -74,15 +74,15 @@
               <div class="col-md-4">
                 <p>Color: {{product.color}}</p>
                 <p>Price: {{product.sitedetails[0].latestoffers[0].price | currency}}</p>
-                <p>Url: {{product.sitedetails[0].url}}</p>
-                <p>Sem3_id: {{product.sem3_id}}</p>
+                <p>URL: <a href="{{product.sitedetails[0].url}}" target="_blank">{{product.sitedetails[0].url}}</a></p>
+                <p>Sem3 ID: {{product.sem3_id}}</p>
               </div>
 
               <div class="col-md-2">
-                <p>Weight: {{product.weight ? product.weight + "kg" : ''}}</p>
-                <p>Height: {{product.height ? product.height + "cm" : ''}}</p>
-                <p>Width: {{product.width ? product.width + "cm" : ''}}</p>
-                <p>Length: {{product.length ? product.length + "cm" : ''}}</p>
+                <p>Weight: {{product.weight ? product.weight + "kg" : 'n/a'}}</p>
+                <p>Height: {{product.height ? product.height + "cm" : 'n/a'}}</p>
+                <p>Width: {{product.width ? product.width + "cm" : 'n/a'}}</p>
+                <p>Length: {{product.length ? product.length + "cm" : 'n/a'}}</p>
             </div>
 
             </div>

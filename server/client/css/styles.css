@@ -14,3 +14,7 @@
 	height: 35px;
 	width: 230px;
 }
+
+.white_border {
+	border: 10px solid white;
+}

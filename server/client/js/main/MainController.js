@@ -7,12 +7,11 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
   $scope.data = {
     repeatSelect: null,
     availableOptions: [
-      {id: '0', name: 'Select Search Option'},
       {id: '1', name: 'Search'},
       {id: '2', name: 'URL'},
       {id: '3', name: 'UPC/EAN'}
     ],
-    selectedOption: {id: '0', name: 'Select Search Option'}
+    selectedOption: {id: '1', name: 'Search'}
    };
 
   $scope.apiData = [];
