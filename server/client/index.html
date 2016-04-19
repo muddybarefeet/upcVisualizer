@@ -30,21 +30,18 @@
 
         <div class="form-group row">
           <div class="col-md-9">
-            <h5>Search Bar:</h5>
+            <h4>Search Bar:</h4>
             <input type="text" class="form-control" ng-model="input">
           </div>
           <div class="col-md-3"> 
             <form name="myForm">
-              <h5 class=""> Search Type: </h5>
+              <h4 class=""> Search Type: </h4>
               <select name="repeatSelect" class="select_style" ng-model="data.repeatSelect">
                 <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
               </select>
               <button type="button" class="btn btn-warning float_button" ng-click="findType()">Find my data</button>
             </form>
           </div>
-         <!--  <div class="col-md-3"> 
-          </div> -->
-
         </div>
 
 
@@ -73,10 +70,10 @@
               </div>
 
               <div class="col-md-2">
-                <p>Weight: {{product.weight | number}}</p>
-                <p>Height: {{product.height}}</p>
-                <p>Width: {{product.width}}</p>
-                <p>Length: {{product.length}}</p>
+                <p>Weight: {{product.weight | number}}kg</p>
+                <p>Height: {{product.height}}cm</p>
+                <p>Width: {{product.width}}cm</p>
+                <p>Length: {{product.length}}cm</p>
             </div>
 
             </div>
