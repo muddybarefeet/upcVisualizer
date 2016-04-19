@@ -19,7 +19,8 @@ app.use('/api', function (req, res) {
 	//ping the semantics3 api and get the data
 	var identifier = req.body.identifier;
 	var value = req.body.value;
-	return apiScript.apiQuery(identifier, value)
+	var offset = req.body.offset;
+	return apiScript.apiQuery(identifier, value, offset)
 	.then(function (data) {
 		return res.status(200).json({
 	    	data: data

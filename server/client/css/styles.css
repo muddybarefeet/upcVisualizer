@@ -1,9 +1,13 @@
 .main {
-	margin-top: 100px;
+	margin-top: 120px;
 }
 
 .api_image {
 	width: 170px;
+}
+
+.nav_width {
+	height: 60px;
 }
 
 .top_margin_display {
@@ -17,4 +21,36 @@
 
 .white_border {
 	border: 10px solid white;
+	/*background: white;*/
+	width: 161px;
+	height: 161px;
+}
+
+.logo_size {
+	margin-top: 7px;
+	width: 40px;
+	display: inline;
+	float: left;
+}
+
+.remove_hover {
+	margin-top: 18px;
+	color: #d3d3d3;
+	list-style-type: none;
+	font-size: 25px;
+	font-family: 'Open Sans', sans-serif;
+	letter-spacing: 1px;
+	font-weight: 100;
+	margin-left: 5px;
+}
+
+.error_box {
+	margin-top: 30px;
+}
+
+.page_num {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 17px;
+	margin-top: 10px;
+	display: inline;
 }

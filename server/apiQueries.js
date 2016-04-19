@@ -6,11 +6,9 @@ var sem3 = require('semantics3-node')(api_key,api_secret);
 
 module.exports = {
 
-	apiQuery: function (indentifier, value) {
+	apiQuery: function (indentifier, value, offset) {
 
 		return new Promise(function(resolve, reject) {
-			// console.log('in the query: ', indentifier, value);
-
 			var edits = {
 			  weight: 1000000,
 			  width: 10,
@@ -21,6 +19,7 @@ module.exports = {
 			// Build the request
 			sem3.products.clear()
 			sem3.products.products_field( indentifier, value );
+			sem3.products.products_field( "offset", offset );
 			// Run the request
 			sem3.products.get_products(function(err, products) {
 			    if (err) {

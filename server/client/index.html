@@ -3,10 +3,12 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="css/filled_box.png"/>
+    <link rel="icon" type="image/png" href="css/images/filled_box.png"/>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -22,11 +24,16 @@
   </head>
   <body ng-app="UpcVisualizer">
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top nav_width">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">UPC.visualizer</a>
+          <li><img class="logo_size" src="css/images/logo.png" ></li>
+          <!-- <li class="remove_hover">UPC.visualizer</li> -->
         </div>
+ <!--        <ul class="nav navbar-nav">
+        </ul> -->
+     <!--    <ul class="nav navbar-nav navbar-right">
+        </ul> -->
       </div>
     </nav>
 
@@ -34,12 +41,12 @@
     <div class="main container" ng-controller="MainController">
 
         <div class="form-group row">
-          <div class="col-md-3"> 
+          <div class="col-sm-12 col-md-3 col-lg-3"> 
             <form name="myForm">
               <select class="select_style" name="mySelect" ng-options="option.name for option in data.availableOptions track by option.id" ng-model="data.selectedOption"></select>
             </form>
           </div>
-          <div class="col-md-9">
+          <div class="col-sm-12 col-md-9 col-lg-9">
             <div class="input-group">
               <input type="text" ng-enter="findType()" ng-model="input" class="form-control" placeholder="Search for ...">
               <span class="input-group-btn">
@@ -48,8 +55,24 @@
             </div>
           </div>
         </div>
-        <!-- <input ng-enter="DoWork()" ng-model="MyText" /> -->
+
+        <div ng-show="showPaginators">
+          <nav>
+            <ul class="pager">
+              <div ng-show="offset">
+                <li class="previous"><a href="#" ng-click="prevClick()"><span aria-hidden="true">&larr;</span> Previous</a></li>
+              </div>
+                <p class="page_num" >Page: {{page}}</p>
+              <li class="next"><a href="#" ng-click="nextClick()" >Next <span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+          </nav>
+        </div>
+
         <span us-spinner="{radius:30, width:8, length: 16}" spinner-on="showSpinner"></span>
+
+        <div ng-show="errorMessage" class="alert alert-danger error_box">
+          {{errorMessage}}
+        </div>
 
         <div ng-repeat="product in apiData" class="top_margin_display"> 
           <div class="well top_margin_display">
@@ -57,25 +80,25 @@
             <h4>{{product.name}}</h4>
             <div class="row top_margin_display">
 
-              <div class="col-md-2">
-                <img class="api_image white_border" ng-src="{{product.images[0]}}" >
+              <div class="col-md-3 col-lg-2">
+                <img class="api_image white_border" ng-src="{{product.images[0] ? product.images[0] : 'css/images/noPhoto.png'}}" >
               </div>
 
-              <div class="col-md-4">
+              <div class="col-md-3 col-lg-4">
                 <p>Brand: {{product.brand}}</p>
                 <p>Manufacturer: {{product.manufacturer}}</p>
                 <p>Category: {{product.category}}</p>
                 <p>UPC: {{product.upc}}</p>
               </div>
 
-              <div class="col-md-4">
+              <div class="col-md-4 col-lg-4">
                 <p>Color: {{product.color}}</p>
                 <p>Price: {{product.sitedetails[0].latestoffers[0].price | currency}}</p>
                 <p>URL: <a href="{{product.sitedetails[0].url}}" target="_blank">{{product.sitedetails[0].url}}</a></p>
                 <p>Sem3 id: {{product.sem3_id}}</p>
               </div>
 
-              <div class="col-md-2">
+              <div class="col-md-2 col-lg-2">
                 <p>Weight: {{product.weight ? product.weight + "kg" : 'n/a'}}</p>
                 <p>Height: {{product.height ? product.height + "cm" : 'n/a'}}</p>
                 <p>Width: {{product.width ? product.width + "cm" : 'n/a'}}</p>
@@ -86,6 +109,17 @@
           </div>
         </div>
 
+        <div ng-show="showPaginators">
+          <nav>
+            <ul class="pager">
+              <div ng-show="offset">
+                <li class="previous"><a href="#" ng-click="prevClick()"><span aria-hidden="true">&larr;</span> Previous</a></li>
+              </div>
+                <p class="page_num" >Page: {{page}}</p>
+              <li class="next"><a href="#" ng-click="nextClick()" >Next <span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+          </nav>
+        </div>
 
     </div>
 
