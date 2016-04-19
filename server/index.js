@@ -26,12 +26,11 @@ app.use('/api', function (req, res) {
 	    });
 	})
 	.catch(function (err) {
-		// console.log('err', err);
 		return res.status(400).json({
 	    	message: err
 	    });
 	});
-	
+
 });
 
 //wild card route to anything not starting /api

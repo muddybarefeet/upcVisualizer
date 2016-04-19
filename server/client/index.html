@@ -36,22 +36,19 @@
         <div class="form-group row">
           <div class="col-md-3"> 
             <form name="myForm">
-          <!--     <select name="repeatSelect" class="select_style" ng-model="data.repeatSelect">
-                <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
-              </select> -->
               <select class="select_style" name="mySelect" ng-options="option.name for option in data.availableOptions track by option.id" ng-model="data.selectedOption"></select>
             </form>
           </div>
           <div class="col-md-9">
             <div class="input-group">
-              <input type="text" ng-model="input" class="form-control" placeholder="Search for ...">
+              <input type="text" ng-enter="findType()" ng-model="input" class="form-control" placeholder="Search for ...">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button" ng-click="findType()"><i class="fa fa-search" aria-hidden="true"></i></button>
               </span>
             </div>
           </div>
         </div>
-
+        <!-- <input ng-enter="DoWork()" ng-model="MyText" /> -->
         <span us-spinner="{radius:30, width:8, length: 16}" spinner-on="showSpinner"></span>
 
         <div ng-repeat="product in apiData" class="top_margin_display"> 
@@ -75,7 +72,7 @@
                 <p>Color: {{product.color}}</p>
                 <p>Price: {{product.sitedetails[0].latestoffers[0].price | currency}}</p>
                 <p>URL: <a href="{{product.sitedetails[0].url}}" target="_blank">{{product.sitedetails[0].url}}</a></p>
-                <p>Sem3 ID: {{product.sem3_id}}</p>
+                <p>Sem3 id: {{product.sem3_id}}</p>
               </div>
 
               <div class="col-md-2">
@@ -101,7 +98,8 @@
     <!-- Services -->
     <script src="js/factory/index.js"></script>
 
-
+    <!-- Directives -->
+    <script src="js/directives/ngEnter.js"></script>
 
   </body>
 </html>

@@ -15,6 +15,9 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
    };
 
   $scope.apiData = [];
+  $scope.DoWork = function(){
+    alert('Hello World! ' + $scope.MyText);  
+  };
 
   $scope.findType = function () {
 
@@ -46,3 +49,4 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
   };
 
 }]);
+
