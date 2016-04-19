@@ -28,51 +28,61 @@
     <!-- this is the scope that applies to the mainController -->
     <div class="main container" ng-controller="MainController">
 
-      <div class="form-group">
-        <label for="usr">Search Bar:</label>
-        <input type="text" class="form-control" ng-model="input">
-      </div>
-        <div>
-          <form name="myForm">
-            <label for="repeatSelect"> Repeat select: </label>
-            <select name="repeatSelect" id="repeatSelect" ng-model="data.repeatSelect">
-              <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
-            </select>
-          </form>
-        </div>
-
-        <button type="button" class="btn btn-warning" ng-click="findType()">Find my data</button>
-
-        <div class="well">
-
-          <div class="row">
-
-          <div class="col-md-3">
-            <td><img class="api_image" ng-src="{{apiData.images[0]}}" ></td>
-          </div>
-
-          <!-- add logic for the price and the url -->
+        <div class="form-group row">
           <div class="col-md-9">
-            <h4>Name: {{apiData.name}}</h4>
-            <p>UPC: {{apiData.upc}}</p>
-            <p>Brand: {{apiData.brand}}</p>
-            <p>Category: {{apiData.category}}</p>
-            <p>Color: {{apiData.color}}</p>
-            <p>Url: {{apiData.color}}</p>
-            <p>Price: {{apiData.color}}</p>
+            <h5>Search Bar:</h5>
+            <input type="text" class="form-control" ng-model="input">
           </div>
-
-<!--           <div class="col-md-3">
-            <p></p>
-            <p></p>
-            <p>Weight: {{apiData.weight | number}}</p>
-            <p>Height: {{apiData.height}}</p>
-            <p>Width: {{apiData.width}}</p>
-            <p>Length: {{apiData.length}}</p>
+          <div class="col-md-3"> 
+            <form name="myForm">
+              <h5 class=""> Search Type: </h5>
+              <select name="repeatSelect" class="select_style" ng-model="data.repeatSelect">
+                <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+              </select>
+              <button type="button" class="btn btn-warning float_button" ng-click="findType()">Find my data</button>
+            </form>
+          </div>
+         <!--  <div class="col-md-3"> 
           </div> -->
 
+        </div>
+
+
+        <div ng-repeat="product in apiData" class="top_margin_display"> 
+          <div class="well top_margin_display">
+
+            <h4>{{product.name}}</h4>
+            <div class="row top_margin_display">
+
+              <div class="col-md-2">
+                <td><img class="api_image" ng-src="{{product.images[0]}}" ></td>
+              </div>
+
+              <div class="col-md-4">
+                <p>Brand: {{product.brand}}</p>
+                <p>Manufacturer: {{product.manufacturer}}</p>
+                <p>Category: {{product.category}}</p>
+                <p>Color: {{product.color}}</p>
+              </div>
+
+              <div class="col-md-4">
+                <p>UPC: {{product.upc}}</p>
+                <p>Sem3_id: {{product.sem3_id}}</p>
+                <p>Price: {{product.sitedetails[0].latestoffers[0].price | currency}}</p>
+                <p>Url: {{product.sitedetails[0].url}}</p>
+              </div>
+
+              <div class="col-md-2">
+                <p>Weight: {{product.weight | number}}</p>
+                <p>Height: {{product.height}}</p>
+                <p>Width: {{product.width}}</p>
+                <p>Length: {{product.length}}</p>
+            </div>
+
+            </div>
           </div>
         </div>
+
 
     </div>
 

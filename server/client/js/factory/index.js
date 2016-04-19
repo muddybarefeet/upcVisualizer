@@ -10,10 +10,11 @@ app.factory('Sem3', ['$http', function($http) {
      }
     };
     
-    console.log('value', value);
+    console.log('value and identifier in factory', value, identifier);
     return $http(req)
     .then(function(apiReturn){
-      return apiReturn.data.results;
+      console.log('in factory back: ', apiReturn);
+      return apiReturn.data.data;
     });
 
   };

@@ -11,7 +11,6 @@ module.exports = {
 		// Build the request
 		sem3.products.clear()
 		sem3.products.products_field( indentifier, value );
-
 		// Run the request
 		sem3.products.get_products(
 		   function(err, products) {
@@ -19,9 +18,8 @@ module.exports = {
 			       	console.log("Couldn't execute request: get_products");
 			        callback(err, null);
 			    }
-			    // View results of the request
-			    // console.log( "Results of request:\n" + JSON.stringify( products ) );
-			    callback(null, JSON.parse(products.results));
+			    var returnData = JSON.parse(products);
+			    callback(null, returnData.results);
 		   }
 		);
 	},

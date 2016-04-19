@@ -5,3 +5,16 @@
 .api_image {
 	width: 170px;
 }
+
+.top_margin_display {
+	margin-top: 20px;
+}
+
+.select_style {
+	height: 30px;
+	width: 130px;
+}
+
+.float_button {
+	float: right;
+}
