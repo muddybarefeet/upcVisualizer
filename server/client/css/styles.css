@@ -93,5 +93,23 @@ ul {
 	list-style: circle;
 }
 
+/*add on styles to bootstrap*/
+#btn-round {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    margin-bottom: 25px;
+    margin-left: 10px;
+}
+
+#search_button {
+	margin-bottom: 23px;
+	margin-left: -3px;
+}
+
+#poisition_plus {
+	margin-left: -2.5px;
+}
+
 
 

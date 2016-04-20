@@ -11,8 +11,9 @@
             <div class="input-group">
               <input type="text" ng-enter="findType()" ng-model="input" id="inputBox" class="form-control" placeholder="Search for ...">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button" ng-click="findType()"><i class="fa fa-search" aria-hidden="true"></i></button>
+                <button id="search_button" class="btn btn-default" type="button" ng-click="findType()"><i class="fa fa-search" aria-hidden="true"></i></button>
               </span>
+            <button type="button" id="btn-round" class="btn btn-success"><span id="poisition_plus" class="glyphicon glyphicon-plus"></button>
             </div>
           </div>
         </div>
@@ -38,6 +39,8 @@
           </div>
         </div>
 
+
+
         <!-- pagination shown when multiple results returned -->
         <div ng-show="showPaginators">
           <nav>
@@ -55,6 +58,7 @@
         <span us-spinner="{radius:30, width:8, length: 16}" spinner-on="showSpinner"></span>
         
         <div ng-show="errorMessage" class="alert alert-danger error_box">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
           {{errorMessage}}
         </div>
 
