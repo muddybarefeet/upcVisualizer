@@ -32,11 +32,17 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
       {id: '2', name: 'URL'},
       {id: '3', name: 'UPC/EAN'},
       {id: '4', name: 'Site'},
+      {id: '5', name: 'Variation ID'}
     ],
     selectedOption: {id: '1', name: 'Search'}
    };
 
   $scope.apiData = [];
+  $scope.info = 0;
+
+  $scope.showInfo = function () {
+    $scope.info = $scope.info === 0 ? 1 : 0;
+  };
 
   $scope.findType = function () {
     //check if the current select is the same as the old select and the vals are same
@@ -67,6 +73,8 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
         $scope.showSpinner = false;
         return;
       }
+    } else if ( $scope.data.selectedOption.name === "Variation ID" ) {
+      identifier = "variation_id";
     }
 
 		Sem3.apiQuery(identifier, $scope.input, $scope.offset) //pass an offset everytime
@@ -78,7 +86,7 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
         $scope.errorMessage = val.message;
         removeError();
       } else {
-        if (identifier === "search" || identifier === "site") {
+        if (identifier === "search" || identifier === "site" || identifier === "variation_id") {
           //show the pagination buttons
           $scope.showPaginators = true;
           $scope.resultsCount = val.count === 100000 ? "100,000+" : formatNumber(val.count);
@@ -90,7 +98,7 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
     .catch(function (err) {
       $scope.showSpinner = false;
       console.log('err ', err);
-      $scope.errorMessage = "This was a bad request";
+      $scope.errorMessage = "This was a bad request. There was no results returned from the API. Please try again.";
       removeError();
     });
     $scope.lastInput = $scope.input;

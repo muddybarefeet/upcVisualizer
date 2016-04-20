@@ -1,34 +1,14 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
 .main {
 	margin-top: 120px;
 }
 
-
+/*navbar*/
 .nav_width {
 	height: 60px;
-}
-
-.api_image {
-	width: 170px;
-}
-
-.top_margin_display {
-	margin-top: 20px;
-}
-
-.select_style {
-	height: 35px;
-	width: 230px;
-}
-
-.padding {
-	padding-top: 20px;
-}
-
-.white_border {
-	border: 10px solid white;
-	/*background: white;*/
-	width: 161px;
-	height: 161px;
 }
 
 .logo_size {
@@ -49,6 +29,39 @@
 	margin-left: 5px;
 }
 
+/*form styles*/
+
+.select_style {
+	height: 35px;
+	width: 230px;
+}
+
+
+#inputBox {
+	font-size: 18px;
+}
+
+.padding {
+	padding: 20px;
+}
+
+/*products display*/
+
+.api_image {
+	width: 170px;
+}
+
+.white_border {
+	border: 10px solid white;
+	/*background: white;*/
+	width: 161px;
+	height: 161px;
+}
+
+.top_margin_display {
+	margin-top: 20px;
+}
+
 .error_box {
 	margin-top: 30px;
 }
@@ -62,6 +75,22 @@
 
 .pagination_button {
 	cursor: pointer;
+}
+
+
+/*information box*/
+
+.info_color {
+	color: red;
+}
+
+.info_box_header {
+	padding-bottom: 10px;
+    margin-top: 0;
+}
+
+ul {
+	list-style: circle;
 }
 
 

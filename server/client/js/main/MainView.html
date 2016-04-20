@@ -9,7 +9,7 @@
           </div>
           <div class="col-sm-12 col-md-9 col-lg-9 padding">
             <div class="input-group">
-              <input type="text" ng-enter="findType()" ng-model="input" class="form-control" placeholder="Search for ...">
+              <input type="text" ng-enter="findType()" ng-model="input" id="inputBox" class="form-control" placeholder="Search for ...">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button" ng-click="findType()"><i class="fa fa-search" aria-hidden="true"></i></button>
               </span>
@@ -17,6 +17,28 @@
           </div>
         </div>
 
+        <i class="fa fa-info-circle fa-2x info_color" ng-click="showInfo();" aria-hidden="true"></i>
+
+        <!-- inforamtion box shown on click of information button -->
+        <div ng-show="info">
+          <div class="well">
+            <h3 class="info_box_header">Examples:</h3>
+            <ul>
+              <li><h4><strong>Search:</strong> "iphone 6"</h4></li>
+              <p>This is a plain text search on the name of a product</p>
+              <li><h4><strong>URL:</strong> "http://www.walmart.com/ip/15833173"</h4></li>
+              <p>This is a URL search</p>
+              <li><h4><strong>UPC/EAN:</strong> "883974958450"</h4></li>
+              <p>This is a search on a unique identifier, either the UPC or EAN or GTIN</p>
+              <li><h4><strong>Site:</strong> "bestbuy.com"</h4></li>
+              <p>This is a search for all thr products in in the database for this site</p>
+              <li><h4><strong>Variation ID:</strong> "3Syp3aH8noK0w64aOQUuAa"</h4></li>
+              <p>This is a search for all products in the database with the same variation id. These will be very variations on one product e.g. different colors.</p>
+            </ul>
+          </div>
+        </div>
+
+        <!-- pagination shown when multiple results returned -->
         <div ng-show="showPaginators">
           <nav>
             <ul class="pager">
