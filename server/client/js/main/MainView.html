@@ -50,11 +50,11 @@
                 <p>Brand: {{product.brand}}</p>
                 <p>Manufacturer: {{product.manufacturer}}</p>
                 <p>Category: {{product.category}}</p>
-                <p>UPC: {{product.upc}}</p>
+                <p>UPC: {{product.upc ? product.upc : 'n/a'}}</p>
               </div>
 
               <div class="col-md-4 col-lg-4">
-                <p>Color: {{product.color}}</p>
+                <p>Color: {{product.color ? product.color : 'n/a'}}</p>
                 <p>Price: {{product.sitedetails[0].latestoffers[0].price | currency}}</p>
                 <p>URL: <a href="{{product.sitedetails[0].url}}" target="_blank">{{product.sitedetails[0].url}}</a></p>
                 <p>Sem3 id: {{product.sem3_id}}</p>
