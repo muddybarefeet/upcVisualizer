@@ -1,7 +1,7 @@
     <!-- this is the scope that applies to the mainController -->
     <div class="main container" ng-controller="MainController">
 
-        <div class="form-group row">
+        <div class="form-group row" id="margin_bottom_form">
           <div class="col-sm-12 col-md-3 col-lg-3 padding"> 
             <form name="myForm" class="">
               <select class="select_style" name="mySelect" ng-options="option.name for option in data.availableOptions track by option.id" ng-model="data.selectedOption"></select>
@@ -13,7 +13,8 @@
               <span class="input-group-btn">
                 <button id="search_button" class="btn btn-default" type="button" ng-click="findType()"><i class="fa fa-search" aria-hidden="true"></i></button>
               </span>
-            <button type="button" id="btn-round" class="btn btn-success"><span id="poisition_plus" class="glyphicon glyphicon-plus"></button>
+            <!-- <button type="button" id="btn-round" ng-click="showInfo();" class="btn btn-danger"><i class="fa fa-info lg" aria-hidden="true"></i> -->
+</button>
             </div>
           </div>
         </div>

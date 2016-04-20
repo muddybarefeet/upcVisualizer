@@ -42,7 +42,11 @@ body {
 }
 
 .padding {
-	padding: 20px;
+	padding-top: 20px;
+}
+
+#margin_bottom_form {
+	margin-bottom: 0;
 }
 
 /*products display*/
@@ -111,5 +115,8 @@ ul {
 	margin-left: -2.5px;
 }
 
+.input_length {
+
+}
 
 
