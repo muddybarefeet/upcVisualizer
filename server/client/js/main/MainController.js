@@ -7,7 +7,7 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
   $scope.page = 0;
   $scope.resultsCount = 0;
 
-  $scope.offset = 800;
+  $scope.offset = 0;
   $scope.showPaginators = false;
 
   $scope.prevClick = function () {
@@ -40,7 +40,6 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
 
   $scope.findType = function () {
     //check if the current select is the same as the old select and the vals are same
-    //if not the reset
     if ( $scope.lastInput !== $scope.input ) {
       $scope.offset = 0;
       $scope.page = 0;
@@ -82,9 +81,10 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
         if (identifier === "search" || identifier === "site") {
           //show the pagination buttons
           $scope.showPaginators = true;
-          $scope.resultsCount = val.count;
+          $scope.resultsCount = val.count === 100000 ? "100,000+" : formatNumber(val.count);
         }
-        $scope.apiData = val.resultsUpdated;
+        $scope.apiData = val.resultsUpdated; 
+
       }
     })
     .catch(function (err) {
@@ -96,11 +96,13 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
     $scope.lastInput = $scope.input;
   };
 
+  //----- helper functions ---------//
+
   var removeError = function () {
     setTimeout(function(){ 
       $scope.errorMessage = ""; 
       $scope.$apply();
-    }, 2000);
+    }, 4000);
   };
 
   var validateUPC = function (upc) {
@@ -115,14 +117,18 @@ app.controller('MainController', ['$scope', 'Sem3', function($scope, Sem3) {
   };
 
   var validateURL = function (url) {
-    var isUrl = /^http.*$/.test(url);
+    var isUrl = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(url);
     if (!isUrl) {
-      $scope.errorMessage = "This is not a valid URL. A valid UPC/EAN does not contain letters.";
+      $scope.errorMessage = "This is not a valid URL.";
       removeError();
       return false;
     } else {
       return true;
     }
+  };
+
+  var formatNumber = function (num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
 }]);

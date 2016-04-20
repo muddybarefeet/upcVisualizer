@@ -2,12 +2,13 @@
 	margin-top: 120px;
 }
 
-.api_image {
-	width: 170px;
-}
 
 .nav_width {
 	height: 60px;
+}
+
+.api_image {
+	width: 170px;
 }
 
 .top_margin_display {
@@ -17,6 +18,10 @@
 .select_style {
 	height: 35px;
 	width: 230px;
+}
+
+.padding {
+	padding-top: 20px;
 }
 
 .white_border {
@@ -55,6 +60,9 @@
 	display: inline;
 }
 
-.padding {
-	padding-top: 20px;
+.pagination_button {
+	cursor: pointer;
 }
+
+
+

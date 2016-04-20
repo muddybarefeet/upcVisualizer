@@ -21,11 +21,11 @@
           <nav>
             <ul class="pager">
               <div ng-show="offset">
-                <li class="previous"><a href="#" ng-click="prevClick()"><span aria-hidden="true">&larr;</span> Previous</a></li>
+                <li class="pagination_button previous"><a ng-click="prevClick()"><span aria-hidden="true">&larr;</span> Previous</a></li>
               </div>
-                <p class="page_num" >Page: {{page}}</p>
-                <p ng-show="resultsCount" class="page_num" >   Product Count: {{resultsCount}}</p>
-              <li class="next"><a href="#" ng-click="nextClick()" >Next <span aria-hidden="true">&rarr;</span></a></li>
+                <p class="page_num" >Page: {{page+1|number}} | </p>
+                <p ng-show="resultsCount" class="page_num" > Total Products Matched: {{resultsCount}}</p>
+              <li class="next pagination_button"><a ng-click="nextClick()" >Next <span aria-hidden="true">&rarr;</span></a></li>
             </ul>
           </nav>
         </div>
